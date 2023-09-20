@@ -1,6 +1,6 @@
 var userInput = $('#user-input');
 var resultsContainer = $('#results-container');
-var lyricsEl = $('lyrics-container');
+var lyricsEl = $('#lyrics-container');
 
 //api keys for easy replacement if limits are exceeded
 var keyMusMatch = 'a2175728fd0b1091b79cae95435a1216'+'buffer'; 
