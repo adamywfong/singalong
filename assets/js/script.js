@@ -1,81 +1,46 @@
-var userInput = $('#user-input');
-var resultsContainer = $('#results-container');
-var lyricsEl = $('#lyrics-container');
 
-//api keys for easy replacement if limits are exceeded
-var keyMusMatch = 'a2175728fd0b1091b79cae95435a1216'+'buffer'; 
-var keyYT = 'AIzaSyBRuDvIUX8S79zEXDUNkaqpftfEY7jjaNQ'+'buffer';
-var lastSearch;
+var keyMusMatch = 'a2175728fd0b1091b79cae95435a1216';
+var keyYT = 'AIzaSyBRuDvIUX8S79zEXDUNkaqpftfEY7jjaNQ';
 
-//required format for API calls for reference
-//http://api.musixmatch.com/ws/1.1/track.search?q={query}&apikey={keyMusMatch}&s_track_rating=asc
-//http://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id={result.track_id}&apikey={keyMusMatch}
+// Define your functions here
+function handleFormSubmit(event) {
+    event.preventDefault();
+    // Implement API call logic here
+}
 
+function diplayResults(data) {
+    console.log(data);
+    lastSearch = data;
+    // Implement displaying results logic here
+}
 
-//Pseudocode for expected required functionality
+function handleResultsClick(event) {
+    event.preventDefault();
+    // Implement handling click on results logic here
+}
 
-// function handleFormSubmit() {
-//     var query = $('#text-submission').val();
-//     fetch('http://api.musixmatch.com/ws/1.1/track.search?q=' + query + '&s_track_rating=desc&apikey=' + keyMusMatch)
-//         .then(function(response){
-//             if (!response.ok) {
-//                 throw response.json();
-//             }
-//             return response.json();
-//         })
-//         .then(function(data) {
-//             diplayResults(data);
-//         });
-// }
+function playSong(song) {
+    // Implement playing a song logic here
+}
 
-// function diplayResults(data) {
-//     console.log(data);
-//     lastSearch = data;
-//     for (var i=0; i < data.track_list.length; i++) {
-//         var resultEl = $('<div>');
-//         resultEl.text(data.track_list[i].track_name);
-//         $('#results-container').append(resultEl);
-//     }
-// }
+function showLyrics(songindex) {
+    // Implement displaying lyrics logic here
+}
 
-// function handleResultsClick(event) {
-//     event.preventDefault()
-//     clicked = event.target;
-//     if (!clicked == result) {
-//         break;
-//     } else {
-//         playSong(clicked.song);
-//         showLyrics(clicked.index);
-//     }
-// }
+// Your existing code for the carousel
+const carousel = document.querySelector('.carousel');
+// ... (carousel code)
 
-// function playSong(song) {
-//     fetch('youtube api request')
-//         .then(function(response) {
-//             if (!response.ok) {
-//                 throw response.json();
-//             }
-//             return response.json();
-//         })
-//         .then(function(data) {
-//             embed data.video;
-//             play data.video;
-//         });
-// }
-
-//function showLyrics(songindex) {
-//     fetch('http://api.musixmatch.com/ws/1.1/tracklyrics.get?commontrack_id=' + lastSearch.track_list[songindex].commontrack_id + '&apikey=' + keyMusMatch)
-//         .then(function(response){
-//             if (!response.ok) {
-//                 throw response.json();
-//             }
-//             return response.json();
-//         })
-//         .then(function(data) {
-//             display data.lyrics_body;
-//             display data.lyrics_copyright                
-//         });
-//}
-
+// Your event listeners for form submission and results click
 userInput.on('submit', handleFormSubmit);
-resultsContainer.on('click','.btn-play', handleResultsClick)
+resultsContainer.on('click', '.btn-play', handleResultsClick);
+
+// JavaScript for the image carousel
+const karaokeCarousel = new bootstrap.Carousel(document.getElementById('karaokeCarousel'));
+const lyricsCarousel = new bootstrap.Carousel(document.getElementById('lyrics-section'));
+
+// Automatically advance to the next slide every 3 seconds (adjust as needed)
+setInterval(() => {
+    karaokeCarousel.next();
+    lyricsCarousel.next();
+}, 3000);

@@ -1,38 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Singalong</title>
-  </head>
-  <body>
+    <title>Singalong - Best Karaoke Page Ever!</title>
+</head>
 <body>
-    <header>
-        <h1>Singalong</h1>
-    </header>
-    <main>
-        <section id="video-section">
-            <iframe width="300" height="200" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
-        </section>
-        <section id="lyrics-section">
-            <h2>Lyrics</h2>
-            <div id="lyrics">
-                <p>lyrics go here</p>
-                <p>lyrics go here</p>
+    <div class="container-fluid">
+        <header class="text-center">
+            <h1>Singalong</h1>
+        </header>
+        <main>
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="karaokeCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <!-- Video slides here -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/VIDEO_ID1" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                            <div class="carousel-item">
+                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/VIDEO_ID2" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                            <!-- Add more video slides as needed -->
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#karaokeCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#karaokeCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div id="lyrics-section" class="carousel slide" data-bs-ride="carousel">
+                        <!-- Lyrics slides here -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <h2>Lyrics 1</h2>
+                                <p>Lyrics go here for Video 1</p>
+                            </div>
+                            <div class="carousel-item">
+                                <h2>Lyrics 2</h2>
+                                <p>Lyrics go here for Video 2</p>
+                            </div>
+                            <!-- Add more lyrics slides as needed -->
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#lyrics-section" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#lyrics-section" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
             </div>
-        </section>
-    </main>
-    <footer>
-        <p>Best Karaoke Page Ever!</p>
-    </footer>
-    <script
-        src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-        crossorigin="anonymous">
-    </script>
+        </main>
+        <footer class="text-center">
+            <p>Best Karaoke Page Ever!</p>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.min.js"></script>
     <script src="./assets/js/script.js"></script>
-  </body>
+</body>
 </html>
