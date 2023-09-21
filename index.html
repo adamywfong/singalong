@@ -11,34 +11,86 @@
   <body>
     <header>
         <h1>Singalong</h1>
+        <form id="user-input">
+          <input type="text" placeholder="Find a Song">
+          <button>Submit</button>
+        </form>
     </header>
-  <main>
-    <form id="user-input">
-      <input type="text" placeholder="Find a Song">
-      <button>Submit</button>
-    </form>
-    <ul id="results-container"> 
-
-    </ul>
-    <section id="video-section">
-      <iframe width="300" height="200" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
-    </section>
-    <section id="lyrics-section">
-      <h2>Lyrics</h2>
-      <div id="lyrics">
-        <p>lyrics go here</p>
-        <p>lyrics go here</p>
-      </div>
-    </section>
-  </main>
-  <footer>
-    <p>Best Karaoke Page Ever!</p>
-  </footer>
-  <script
-    src="https://code.jquery.com/jquery-3.7.1.js"
-    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-    crossorigin="anonymous">
-  </script>
-  <script src="./assets/js/script.js"></script>
+    <main>
+        <ul id="results-container">
+          <!-- search results go here -->
+        </ul>
+        <div class="container">
+            <input type="radio" name="slider" id="item-1" checked>
+            <input type="radio" name="slider" id="item-2">
+            <input type="radio" name="slider" id="item-3">
+          <div class="cards">
+            <label class="card" for="item-1" id="video-1">
+              <iframe src="https://www.youtube.com/embed/s8N00rjil_4" title="Making 3D animation look painterly (it&#39;s easier than you think)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <article>
+                <h1>Song Lyrics</h1>
+                <p class= "Lyrics">song lyrics go go here
+                  song lyrics go go here
+                  song lyrics go go here
+                  song lyrics go go here
+                  song lyrics go go here
+                  song lyrics go go here
+                  song lyrics go go here
+                  song lyrics go go here
+                </p>
+              </article>
+            </label>
+            <label class="card" for="item-2" id="video-2">
+              <iframe src="https://www.youtube.com/embed/HZHHBwzmJLk" title="CSS Animation in 100 Seconds" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <article>
+                <h1>Song Lyrics</h1>
+                <p class="Lyrics">song lyrics go go here
+                  song lyrics go go here
+                  song lyrics go go here
+                  song lyrics go go here
+                  song lyrics go go here
+                  song lyrics go go here
+                  song lyrics go go here
+                  song lyrics go go here
+                </p>
+              </article>
+            </label>
+            <label class="card" for="item-3" id="video-3">
+              <iframe src="https://www.youtube.com/embed/cWNEl4HE2OE" title="Graph Search Algorithms in 100 Seconds - And Beyond with JS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <article>
+                <h1>Song Lyrics</h1>
+                <p class="Lyrics">song lyrics go go here
+                  song lyrics go go here
+                  song lyrics go go here
+                  song lyrics go go here
+                  song lyrics go go here
+                  song lyrics go go here
+                  song lyrics go go here
+                  song lyrics go go here
+                </p>
+              </article>
+            </label>
+          </div>
+      
+        <section id="video-section">
+            <iframe width="300" height="200" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+        </section>
+        <section id="lyrics-section">
+            <h2>Lyrics</h2>
+            <div id="lyrics">
+                <p>lyrics go here</p>
+                <p>lyrics go here</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Best Karaoke Page Ever!</p>
+    </footer>
+    <script
+        src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous">
+    </script>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
