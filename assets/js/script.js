@@ -23,29 +23,31 @@ var keyYT = 'AIzaSyBRuDvIUX8S79zEXDUNkaqpftfEY7jjaNQ'+'buffer';
 function handleFormSubmit(event) {
     event.preventDefault();
     var query = $(userInput).children().eq(0).val();
-    userInput.children().eq(0).val('');
-    fetch('https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.search?q=' + query + '&page_size=4&s_track_rating=desc&apikey=' + keyMusMatch)
-        .then(function(response){
-            if (!response.ok) {
-                throw response.json();
-            }
-            return response.json();
-        })
-        .then(function(data) {
-            displayResults(data);
-        });
+    if (query!=='') {
+        userInput.children().eq(0).val('');
+        fetch('https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.search?q_track_artist=' + query + '&f_has_lyrics=1&s_track_rating=desc&page_size=10&apikey=' + keyMusMatch)
+            .then(function(response){
+                if (!response.ok) {
+                    throw response.json();
+                }
+                return response.json();
+            })
+            .then(function(data) {
+                displayResults(data);
+            });
+    }
 }
 
 function displayResults(data) {
-    console.log(data);
-    console.log(data.body.track_list);
-    console.log(data.body.track_list[0]);
-    lastSearch = data;
-    if (data.track_list.length){
-        for (var i=0; i < data.track_list.length; i++) {
+    var trackList = data.message.body.track_list;
+    lastSearch = trackList;
+    if (!trackList.length){
+        return;
+    } else {
+        for (var i=0; i < trackList.length; i++) {
             var resultEl = $("<li class='song-option' data-index='" + i +"'>");
-            var playButton = $("<i class='align-left' src='https://upload.wikimedia.org/wikipedia/commons/2/2f/Play_groen.png'>")
-            resultEl.text(data.track_list[i].track_name + ' by ' + data.track_list[i].artist_name);
+            var playButton = $("<i class='align-left'>")
+            resultEl.text(trackList[i].track.track_name + ' by ' + trackList[i].track.artist_name);
             resultEl.append(playButton);
             $('#results-container').append(resultEl);
         }
