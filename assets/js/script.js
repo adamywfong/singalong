@@ -11,6 +11,8 @@ var lastSearch;
 //http://api.musixmatch.com/ws/1.1/track.search?q={query}&apikey={keyMusMatch}&s_track_rating=asc
 //http://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id={result.track_id}&apikey={keyMusMatch}
 
+//Add this url to start of fetch urls to fix cors issues
+//https://cors-anywhere.herokuapp.com/
 
 //Pseudocode for expected required functionality
 // function init() {
@@ -21,7 +23,7 @@ function handleFormSubmit(event) {
     event.preventDefault();
     var query = $(userInput).children().eq(0).val();
     userInput.children().eq(0).val('');
-    fetch('http://api.musixmatch.com/ws/1.1/track.search?q=' + query + '&page_size=4&s_track_rating=desc&apikey=' + keyMusMatch)
+    fetch('https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.search?q=' + query + '&page_size=4&s_track_rating=desc&apikey=' + keyMusMatch)
         .then(function(response){
             if (!response.ok) {
                 throw response.json();
@@ -66,7 +68,7 @@ function handleResultsClick(event) {
 // }
 
 // function showLyrics(songindex) {
-//     fetch('http://api.musixmatch.com/ws/1.1/tracklyrics.get?commontrack_id=' + lastSearch.track_list[songindex].commontrack_id + '&apikey=' + keyMusMatch)
+//     fetch('https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/tracklyrics.get?commontrack_id=' + lastSearch.track_list[songindex].commontrack_id + '&apikey=' + keyMusMatch)
 //         .then(function(response){
 //             if (!response.ok) {
 //                 throw response.json();
