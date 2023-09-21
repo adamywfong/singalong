@@ -1,11 +1,12 @@
 var userInput = $('#user-input');
 var resultsContainer = $('#results-container');
-var lyricsEl = $('#lyrics-container');
+var lyricsEl = $('#lyrics-section');
+var lastSearch;
+var favoritesList;
 
 //api keys for easy replacement if limits are exceeded
-var keyMusMatch = 'a2175728fd0b1091b79cae95435a1216' + 'buffer'; 
+var keyMusMatch = 'a2175728fd0b1091b79cae95435a1216'; 
 var keyYT = 'AIzaSyBRuDvIUX8S79zEXDUNkaqpftfEY7jjaNQ'+'buffer';
-var lastSearch;
 
 //required format for API calls for reference
 //http://api.musixmatch.com/ws/1.1/track.search?q={query}&apikey={keyMusMatch}&s_track_rating=asc
@@ -37,11 +38,15 @@ function handleFormSubmit(event) {
 
 function displayResults(data) {
     console.log(data);
+    console.log(data.body.track_list);
+    console.log(data.body.track_list[0]);
     lastSearch = data;
     if (data.track_list.length){
         for (var i=0; i < data.track_list.length; i++) {
             var resultEl = $("<li class='song-option' data-index='" + i +"'>");
-            resultEl.text(data.track_list[i].track_name);
+            var playButton = $("<i class='align-left' src='https://upload.wikimedia.org/wikipedia/commons/2/2f/Play_groen.png'>")
+            resultEl.text(data.track_list[i].track_name + ' by ' + data.track_list[i].artist_name);
+            resultEl.append(playButton);
             $('#results-container').append(resultEl);
         }
     }
