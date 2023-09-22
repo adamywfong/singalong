@@ -1,25 +1,98 @@
-@import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap");
+:root {
+  --unicorn-pink: #e2aaaa;
+  --unicorn-purple: #94b7ec;
+  --unicorn-blue: #63E6BE;
+  --unicorn-green: #8CD790;
+  --unicorn-yellow: #FFD166;
+  background: linear-gradient(to right, var(--unicorn-pink), var(--unicorn-blue));
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
 
 .title:not(:last-child) {
   margin-bottom: 0;
+  background-color: var(--unicorn-purple);
+  padding: 0.5rem;
+  border-radius: 10px;
+  color: white;
 }
+
 .columns:last-child {
   margin-bottom: 0;
 }
-ul{
+
+ul {
   display: flex;
   flex-direction: column;
-
 }
 
 #user-input.columns {
-  margin-top: 0;
-  margin-left:0;
-  margin-right: 0;
+  margin: 0;
 }
 
 .columns {
-  margin-left: 1rem;
-  margin-right: 1rem;
-  margin-top: 1rem;
+  margin: 1rem;
+}
+
+.columns h1.title {
+  color: black;
+  font-style: italic;
+  font-size: xx-large;
+  font-weight: 700;
+}
+
+#user-input input[type="text"] {
+  border: none;
+  background: linear-gradient(to right, var(--unicorn-pink), var(--unicorn-blue));
+  padding: 0.5rem;
+  border-radius: 10px;
+  color: rgb(10, 10, 10);
+}
+
+#user-input button {
+  background: linear-gradient(to right, var(--unicorn-green), var(--unicorn-yellow));
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 10px;
+}
+
+#user-input button:hover {
+  background: linear-gradient(to right, var(--unicorn-yellow), var(--unicorn-green));
+}
+
+.lyrics-section {
+  background: linear-gradient(to right, var(--unicorn-pink), var(--unicorn-purple));
+  padding: 1rem;
+  border-radius: 10px;
+  color: white;
+}
+
+.card {
+  display: flex;
+  background: linear-gradient(to right, var(--unicorn-pink), var(--unicorn-blue)); 
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(5, 5, 5, 0.1);
+  margin-bottom: 1rem;
+}
+
+.card-video-1,
+.card-video-2,
+.card-video-3 {
+  flex: 1;
+}
+
+.lyrics-section {
+  position: relative;
+  overflow: hidden;
+  padding: 1rem;
+  border-radius: 10px;
+  color: rgb(14, 12, 12);
+  background: linear-gradient(to right, var(--unicorn-pink), var(--unicorn-purple));
 }
