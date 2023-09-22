@@ -5,6 +5,7 @@ var lyricsEls = $('.lyrics-section');
 var videoBoxes = $('.video');
 var lastSearch;
 var favoritesList;
+var videoNum = 2;
 
 //api keys for easy replacement if limits are exceeded
 var keyMusMatch = 'a2175728fd0b1091b79cae95435a1216'; 
@@ -53,7 +54,7 @@ function displayResults(data) {
     } else {
         resultsContainer.empty();
         for (var i=0; i < trackList.length; i++) {
-            var resultEl = $("<li class='song-option' data-index='" + i +"'>");
+            var resultEl = $("<button class='button is-rounded is-primary song-option' data-index='" + i +"'>");
             var playButton = $("<i class='align-left'>")
             resultEl.text(trackList[i].track.track_name + ' by ' + trackList[i].track.artist_name);
             resultEl.append(playButton);
@@ -66,6 +67,7 @@ function handleResultsClick(event) {
     event.preventDefault();
     clicked = event.target;
     songClicked = clicked.closest('.song-option');
+    videoNum = (videoNum + 1)%3;
     playSong(songClicked.textContent);
     showLyrics(parseInt(songClicked.dataset.index));
 }
@@ -84,9 +86,9 @@ function playSong(song) {
 }
 
 function embed(videoId, videoTitle) {
-    $(videoBoxes[0]).empty();
+    $(videoBoxes[videoNum]).empty();
     var videoEl = $('<iframe class="iframe" src = "https://www.youtube.com/embed/' + videoId + '" title="' + videoTitle + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>');
-    $(videoBoxes[0]).append(videoEl);
+    $(videoBoxes[videoNum]).append(videoEl);
 }
 
 function showLyrics(songindex) {
@@ -98,13 +100,13 @@ function showLyrics(songindex) {
             return response.json();
         })
         .then(function(data) {
-            $(lyricsEls[0]).empty();
+            $(lyricsEls[videoNum]).empty();
             var lyricText = data.message.body.lyrics.lyrics_body;
             var copyright = data.message.body.lyrics.lyrics_copyright;
             var copyrightMessage = $('<span class="copyright">');
-            $(lyricsEls[0]).html('<h1>Song Lyrics</h1><p class="lyrics">' + lyricText + '</p>');
+            $(lyricsEls[videoNum]).html('<h1>Song Lyrics</h1><p class="lyrics">' + lyricText + '</p>');
             copyrightMessage.text(copyright);
-            $(lyricsEls[0]).append(copyright);
+            $(lyricsEls[videoNum]).append(copyright);
         });
 }
 
