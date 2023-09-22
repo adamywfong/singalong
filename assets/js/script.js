@@ -1,14 +1,14 @@
 var userInput = $('#user-input');
 var resultsContainer = $('#results-container');
-var lyricsEl = $('.lyrics-section');
+var lyricsEls = $('.lyrics-section');
 //placeholder for HTML element that will hold the Youtube video
-var videoBox = $('.video');
+var videoBoxes = $('.video');
 var lastSearch;
 var favoritesList;
 
 //api keys for easy replacement if limits are exceeded
 var keyMusMatch = 'a2175728fd0b1091b79cae95435a1216'; 
-var keyYT = 'AIzaSyBRuDvIUX8S79zEXDUNkaqpftfEY7jjaNQ'+'buffer';
+var keyYT = 'AIzaSyBRuDvIUX8S79zEXDUNkaqpftfEY7jjaNQ';
 
 //required format for API calls for reference
 //http://api.musixmatch.com/ws/1.1/track.search?q={query}&apikey={keyMusMatch}&s_track_rating=asc
@@ -63,14 +63,15 @@ function displayResults(data) {
 }
 
 function handleResultsClick(event) {
-    event.preventDefault()
+    event.preventDefault();
     clicked = event.target;
-    // playSong(clicked.song);
-    // showLyrics(clicked.dataset.index);
+    songClicked = clicked.closest('.song-option');
+    playSong(songClicked.textContent);
+    showLyrics(parseInt(songClicked.dataset.index));
 }
 
 function playSong(song) {
-    fetch('https://www.googleapis.com/youtube/v3/search?part=snipper&type=video&q=' + song + '&videoCategoryId=10&key=' +keyYT)
+    fetch('https://cors-anywhere.herokuapp.com/https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=' + song + '&videoCategoryId=10&key=' +keyYT)
         .then(function(response) {
             if (!response.ok) {
                 throw response.json();
@@ -83,9 +84,9 @@ function playSong(song) {
 }
 
 function embed(videoId, videoTitle) {
-    videoBox[0].empty();
-    var videoEl = $('<iframe class="iframe" src = "https://www.youtube.com/embed/' + videoId + '" title="' + videoTitle + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen');
-    videoBox[0].append(videoEl);
+    $(videoBoxes[0]).empty();
+    var videoEl = $('<iframe class="iframe" src = "https://www.youtube.com/embed/' + videoId + '" title="' + videoTitle + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>');
+    $(videoBoxes[0]).append(videoEl);
 }
 
 function showLyrics(songindex) {
@@ -97,13 +98,13 @@ function showLyrics(songindex) {
             return response.json();
         })
         .then(function(data) {
-            lyricsEl[0].empty();
-            var lyricText = data.body.lyrics.lyrics_body;
-            var copyright = data.body.lyrics.lyrics_copyright;
-            var copyrightMessage = $('<span class="copyright">'); 
-            lyricsEl[0].html('<h1>Song Lyrics</h1><p class="lyrics">' + lyricText + '</p>');
+            $(lyricsEls[0]).empty();
+            var lyricText = data.message.body.lyrics.lyrics_body;
+            var copyright = data.message.body.lyrics.lyrics_copyright;
+            var copyrightMessage = $('<span class="copyright">');
+            $(lyricsEls[0]).html('<h1>Song Lyrics</h1><p class="lyrics">' + lyricText + '</p>');
             copyrightMessage.text(copyright);
-            lyricsEl[0].append(copyright);
+            $(lyricsEls[0]).append(copyright);
         });
 }
 
