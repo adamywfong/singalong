@@ -9,89 +9,89 @@
     <title>Singalong</title>
   </head>
   <body>
+
     <header>
-        <h1>Singalong</h1>
-        <form id="user-input">
-          <input type="text" placeholder="Find a Song">
-        <button>Submit</button>
-      </form>
+      <div class = "columns">
+        <h1 class = "title column">Singalong</h1>
+        <form class = "column columns" id="user-input">
+          <input class ="column" type="text" placeholder="Find a Song">
+          <butto class="column">Submit</butto>
+        </form>
+      </div>
     </header>
-    <main>
-      <div section id ="results">
-        <ul id="results-container">
+
+    <main class = "column">
+      <div class = "columns" section id ="results ">
+        <ul class = "column" id="results-container">
           <li> results go here </li>
           <li> results go here </li>
           <li> results go here </li>
         </ul>
       </div>
-      <div section id ="carousel-container">
-        <section class="carousel">
-          <div class="container">
-            <input type="radio" name="slider" id="item-1" checked>
-            <input type="radio" name="slider" id="item-2">
-            <input type="radio" name="slider" id="item-3">
-          <div class="cards">
-            <label class="card" for="item-1" id="video-1">
-              <iframe src="https://www.youtube.com/embed/s8N00rjil_4" title="Making 3D animation look painterly (it&#39;s easier than you think)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                <article>
-                  <h1>Song Lyrics</h1>
-                  <p class= "Lyrics">song lyrics go go here
-                      song lyrics go go here
-                      song lyrics go go here
-                      song lyrics go go here
-                      song lyrics go go here
-                      song lyrics go go here
-                      song lyrics go go here
-                      song lyrics go go here
-                  </p>
-                </article>
-            </label>
-            <label class="card" for="item-2" id="video-2">
-              <iframe src="https://www.youtube.com/embed/HZHHBwzmJLk" title="CSS Animation in 100 Seconds" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                <article>
-                    <h1>Song Lyrics</h1>
-                    <p class="Lyrics">song lyrics go go here
-                      song lyrics go go here
-                      song lyrics go go here
-                      song lyrics go go here
-                      song lyrics go go here
-                      song lyrics go go here
-                      song lyrics go go here
-                      song lyrics go go here
-                    </p>
-                </article>
-            </label>
-            <label class="card" for="item-3" id="video-3">
-              <iframe src="https://www.youtube.com/embed/cWNEl4HE2OE" title="Graph Search Algorithms in 100 Seconds - And Beyond with JS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                <article>
-                  <h1>Song Lyrics</h1>
-                  <p class="Lyrics">song lyrics go go here
-                    song lyrics go go here
-                    song lyrics go go here
-                    song lyrics go go here
-                    song lyrics go go here
-                    song lyrics go go here
-                    song lyrics go go here
-                    song lyrics go go here
-                  </p>
-                </article>
-            </label>
+
+        <div class="card columns">
+          <div class="card-video-1 column">
+            <figure id="video is-4by3">
+              <iframe class = "has-ratio" src="https://www.youtube.com/embed/s8N00rjil_4" title="Making 3D animation look painterly (it&#39;s easier than you think)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </figure>
           </div>
-        </section>
-      </div>
-        <!-- <section id="video-section">
-            <iframe width="300" height="200" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
-        </section>
-        <section id="lyrics-section">
-            <h2>Lyrics</h2>
-            <div id="lyrics">
-                <p>lyrics go here</p>
-                <p>lyrics go here</p>
-            </div>
-        </section>-->
+          <div class="lyrics-section">
+            <h1>Song Lyrics</h1>
+              <p class="Lyrics">song lyrics go go here
+                song lyrics go go here
+                song lyrics go go here
+                song lyrics go go here
+                song lyrics go go here
+                song lyrics go go here
+                song lyrics go go here
+                song lyrics go go here
+              </p>
+          </div> 
+        </div>
+
+      <div class="card columns">
+          <div class="card-video-2 column">
+            <figure id="video is-4by3">
+              <iframe src="https://www.youtube.com/embed/HZHHBwzmJLk" title="CSS Animation in 100 Seconds" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </figure>
+          </div>
+          <div class="lyrics-section">
+            <h1>Song Lyrics</h1>
+              <p class="Lyrics">song lyrics go go here
+                song lyrics go go here
+                song lyrics go go here
+                song lyrics go go here
+                song lyrics go go here
+                song lyrics go go here
+                song lyrics go go here
+                song lyrics go go here
+              </p>
+          </div>  
+        </div>
+      <div class="card columns">
+          <div class="card-video-3 column">
+            <figure id="video is-4by3">
+              <iframe src="https://www.youtube.com/embed/cWNEl4HE2OE" title="Graph Search Algorithms in 100 Seconds - And Beyond with JS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </figure>
+          </div>
+          <div class="lyrics-section">
+            <h1>Song Lyrics</h1>
+              <p class="Lyrics">song lyrics go go here
+                song lyrics go go here
+                song lyrics go go here
+                song lyrics go go here
+                song lyrics go go here
+                song lyrics go go here
+                song lyrics go go here
+                song lyrics go go here
+              </p>
+          </div>
+        </div>      
     </main>
-    <footer>
+    <div class = "columns">
+      <footer class = "column">
         <p>Best Karaoke Page Ever!</p> 
+      </div>
     </footer>
     <script
         src="https://code.jquery.com/jquery-3.7.1.js"
@@ -100,5 +100,4 @@
     </script>
   <script src="./assets/js/script.js"></script>
 </body>
-
 </html>
