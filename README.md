@@ -1,6 +1,6 @@
 # singalong
 Singalong - Best Karaoke Page Ever!
-![singalong screenshot](image.png)
+![singalong screenshot](screenshot.png)
 
 Singalong is a web application that allows users to enjoy karaoke-style music and lyrics. Users can search for their favorite songs, view lyrics, and sing along to their chosen tracks. The project incorporates a colorful design and an image carousel to enhance the user experience.
 
