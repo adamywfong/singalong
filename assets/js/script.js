@@ -1,6 +1,7 @@
 var userInput = $('#user-input');
 var resultsContainer = $('#results-container');
 var lyricsEl = $('#lyrics-section');
+//placeholder for HTML element that will hold the Youtube video
 var videoBox = $('#video');
 var lastSearch;
 var favoritesList;
@@ -13,7 +14,7 @@ var keyYT = 'AIzaSyBRuDvIUX8S79zEXDUNkaqpftfEY7jjaNQ'+'buffer';
 //http://api.musixmatch.com/ws/1.1/track.search?q={query}&apikey={keyMusMatch}&s_track_rating=asc
 //http://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id={result.track_id}&apikey={keyMusMatch}
 
-//Add this url to start of fetch urls to fix cors issues
+//Add this url to start of fetch urls to fix cors issues||You may need to navigate to the site first and click a button
 //https://cors-anywhere.herokuapp.com/
 
 //Pseudocode for expected required functionality
@@ -97,7 +98,3 @@ function embed(videoId, videoTitle) {
 // init();
 userInput.on('submit', handleFormSubmit);
 resultsContainer.on('click','.song-option', handleResultsClick)
-
-
-// <iframe width="560" height="315" src="https://www.youtube.com/embed/lJIrF4YjHfQ?si=iWOItCT9wwB-Rhkw"
-// title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
