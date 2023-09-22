@@ -1,6 +1,8 @@
 var userInput = $('#user-input');
 var resultsContainer = $('#results-container');
 var lyricsEl = $('#lyrics-section');
+//placeholder for HTML element that will hold the Youtube video
+var videoBox = $('#video');
 var lastSearch;
 var favoritesList;
 
@@ -12,7 +14,7 @@ var keyYT = 'AIzaSyBRuDvIUX8S79zEXDUNkaqpftfEY7jjaNQ'+'buffer';
 //http://api.musixmatch.com/ws/1.1/track.search?q={query}&apikey={keyMusMatch}&s_track_rating=asc
 //http://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id={result.track_id}&apikey={keyMusMatch}
 
-//Add this url to start of fetch urls to fix cors issues
+//Add this url to start of fetch urls to fix cors issues||You may need to navigate to the site first and click a button
 //https://cors-anywhere.herokuapp.com/
 
 //Pseudocode for expected required functionality
@@ -61,18 +63,23 @@ function handleResultsClick(event) {
     // showLyrics(clicked.dataset.index);
 }
 
-// function playSong(song) {
-//     fetch('https://www.googleapis.com/youtube/v3/search?type=video&q=' + song + '&videoCategoryId=10&key=' +keyYT)
-//         .then(function(response) {
-//             if (!response.ok) {
-//                 throw response.json();
-//             }
-//             return response.json();
-//         })
-//         .then(function(data) {
-//             embed(data.items[0].id.videoId);
-//         });
-// }
+function playSong(song) {
+    fetch('https://www.googleapis.com/youtube/v3/search?part=snipper&type=video&q=' + song + '&videoCategoryId=10&key=' +keyYT)
+        .then(function(response) {
+            if (!response.ok) {
+                throw response.json();
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            embed(data.items[0].id.videoId, data.items[0].snippet.title);
+        });
+}
+
+function embed(videoId, videoTitle) {
+    var videoEl = $('<iframe class="iframe" src = "https://www.youtube.com/embed/' + videoId + '" title="' + videoTitle + '"');
+    videoBox.append(videoEl);
+}
 
 // function showLyrics(songindex) {
 //     fetch('https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/tracklyrics.get?commontrack_id=' + lastSearch.track_list[songindex].commontrack_id + '&apikey=' + keyMusMatch)
