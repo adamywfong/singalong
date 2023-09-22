@@ -81,19 +81,24 @@ function embed(videoId, videoTitle) {
     videoBox.append(videoEl);
 }
 
-// function showLyrics(songindex) {
-//     fetch('https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/tracklyrics.get?commontrack_id=' + lastSearch.track_list[songindex].commontrack_id + '&apikey=' + keyMusMatch)
-//         .then(function(response){
-//             if (!response.ok) {
-//                 throw response.json();
-//             }
-//             return response.json();
-//         })
-//         .then(function(data) {
-//             display data.lyrics_body;
-//             display data.lyrics_copyright                
-//         });
-// }
+function showLyrics(songindex) {
+    fetch('https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id=' + lastSearch[songindex].track.commontrack_id + '&apikey=' + keyMusMatch)
+        .then(function(response){
+            if (!response.ok) {
+                throw response.json();
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            lyricsEl.html('');
+            var lyricText = data.body.lyrics.lyrics_body;
+            var copyright = data.body.lyrics.lyrics_copyright;
+            var copyrightMessage = $('<span class="copyright">'); 
+            lyricsEl.text(lyricText);
+            copyrightMessage.text(copyright);
+            lyricsEl.append(copyright);
+        });
+}
 
 // init();
 userInput.on('submit', handleFormSubmit);
