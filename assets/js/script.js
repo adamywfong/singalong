@@ -82,7 +82,7 @@ function embed(videoId, videoTitle) {
 }
 
 function showLyrics(songindex) {
-    fetch('https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id=' + lastSearch.track_list[songindex].commontrack_id + '&apikey=' + keyMusMatch)
+    fetch('https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id=' + lastSearch[songindex].track.commontrack_id + '&apikey=' + keyMusMatch)
         .then(function(response){
             if (!response.ok) {
                 throw response.json();
