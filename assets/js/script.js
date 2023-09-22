@@ -1,8 +1,8 @@
 var userInput = $('#user-input');
 var resultsContainer = $('#results-container');
-var lyricsEl = $('#lyrics-section');
+var lyricsEl = $('.lyrics-section');
 //placeholder for HTML element that will hold the Youtube video
-var videoBox = $('#video');
+var videoBox = $('.video');
 var lastSearch;
 var favoritesList;
 
@@ -17,10 +17,15 @@ var keyYT = 'AIzaSyBRuDvIUX8S79zEXDUNkaqpftfEY7jjaNQ'+'buffer';
 //Add this url to start of fetch urls to fix cors issues||You may need to navigate to the site first and click a button
 //https://cors-anywhere.herokuapp.com/
 
-//Pseudocode for expected required functionality
-// function init() {
 
-// }
+function init() {
+    favoritesList = localStorage.getItem("favorites");
+    if (favoritesList) {
+        favoritesList = JSON.parse(favoritesList);
+    } else {
+        favoritesList = [];
+    }
+}
 
 function handleFormSubmit(event) {
     event.preventDefault();
@@ -46,6 +51,7 @@ function displayResults(data) {
     if (!trackList.length){
         return;
     } else {
+        resultsContainer.empty();
         for (var i=0; i < trackList.length; i++) {
             var resultEl = $("<li class='song-option' data-index='" + i +"'>");
             var playButton = $("<i class='align-left'>")
@@ -77,8 +83,9 @@ function playSong(song) {
 }
 
 function embed(videoId, videoTitle) {
-    var videoEl = $('<iframe class="iframe" src = "https://www.youtube.com/embed/' + videoId + '" title="' + videoTitle + '"');
-    videoBox.append(videoEl);
+    videoBox[0].empty();
+    var videoEl = $('<iframe class="iframe" src = "https://www.youtube.com/embed/' + videoId + '" title="' + videoTitle + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen');
+    videoBox[0].append(videoEl);
 }
 
 function showLyrics(songindex) {
@@ -90,13 +97,13 @@ function showLyrics(songindex) {
             return response.json();
         })
         .then(function(data) {
-            lyricsEl.html('');
+            lyricsEl[0].empty();
             var lyricText = data.body.lyrics.lyrics_body;
             var copyright = data.body.lyrics.lyrics_copyright;
             var copyrightMessage = $('<span class="copyright">'); 
-            lyricsEl.text(lyricText);
+            lyricsEl[0].html('<h1>Song Lyrics</h1><p class="lyrics">' + lyricText + '</p>');
             copyrightMessage.text(copyright);
-            lyricsEl.append(copyright);
+            lyricsEl[0].append(copyright);
         });
 }
 
