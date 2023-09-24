@@ -95,8 +95,26 @@ function playSong(song) {
 //creates an embedded video onto index.html
 function embed(videoId, videoTitle) {
     $(videoBoxes[videoNum]).empty();
+    var favoriteIcon = $('<button class="btn-favorite" data-active="false"> ♡ </i>');
     var videoEl = $('<iframe class="iframe" src = "https://www.youtube.com/embed/' + videoId + '" title="' + videoTitle + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>');
-    $(videoBoxes[videoNum]).append(videoEl);
+    $(videoBoxes[videoNum]).append(videoEl, favoriteIcon);
+}
+
+function handleFavorite(event) {
+    event.preventDefault();
+    var clicked = event.target;
+    var favorite = clicked.closest('.btn-favorite');
+    if (favorite.dataset.active == "true") {
+        favorite.dataset.active = "false";
+        $(favorite).text('♡');
+        // TODO: remove video from favorites
+        // TODO: set updated favorites in localStorage
+    } else {
+        $(favorite).text('♥');
+        favorite.dataset.active = "true";
+        //TODO: add video to favorites
+        //TODOL set updated favorites in localStorage
+    }
 }
 
 //displays the lyrics of a given searchresult
@@ -122,3 +140,4 @@ function showLyrics(songindex) {
 // init();
 userInput.on('submit', handleFormSubmit);
 resultsContainer.on('click','.song-option', handleResultsClick)
+videoBoxes.on('click', '.btn-favorite', handleFavorite);
