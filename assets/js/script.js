@@ -109,6 +109,7 @@ function playSong(song) {
 function embed(videoId, videoTitle) {
     $(videoBoxes[currentIndex]).empty();
     console.log(favoritesList.findIndex(i => i.videoID === videoId));
+    //checks to see if song is already in favorites list
     if(favoritesList.findIndex(i => i.videoID === videoId)>=0) {
         var favoriteIcon = $('<button class="btn-favorite" data-active="true"> ♥ </button>');
     } else {
@@ -118,6 +119,7 @@ function embed(videoId, videoTitle) {
     $(videoBoxes[currentIndex]).append(videoEl, favoriteIcon);
 }
 
+//When a song is favorites, adds it to the favorites list
 function handleFavorite(event) {
     event.preventDefault();
     var clicked = event.target;
@@ -125,14 +127,12 @@ function handleFavorite(event) {
     console.log (favorite.dataset);
     if (favorite.dataset.active == "true") {
         favorite.dataset.active = "false";
-        favorite.dataset.active = "false";
         $(favorite).text('♡');
         var index = favoritesList.indexOf(videoData[currentIndex]);
         favoritesList.splice(index,1);
         localStorage.setItem("favorites", JSON.stringify(favoritesList));
     } else {
         $(favorite).text('♥');
-        favorite.dataset.active = "true";
         favorite.dataset.active = "true";
         favoritesList.push(videoData[currentIndex]);
         localStorage.setItem("favorites", JSON.stringify(favoritesList));
@@ -159,6 +159,7 @@ function showLyrics(songindex) {
         });
 }
 
+//Carousel button controls
 nextButton.click(() =>  {
     var oldSlide = $('[data-slider-index="' + currentIndex + '"]');
     currentIndex += 1;  
