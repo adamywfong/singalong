@@ -108,7 +108,12 @@ function playSong(song) {
 //creates an embedded video onto index.html
 function embed(videoId, videoTitle) {
     $(videoBoxes[currentIndex]).empty();
-    var favoriteIcon = $('<button class="btn-favorite" data-active="false"> ♡ </button>');
+    console.log(favoritesList.findIndex(i => i.videoID === videoId));
+    if(favoritesList.findIndex(i => i.videoID === videoId)>=0) {
+        var favoriteIcon = $('<button class="btn-favorite" data-active="true"> ♥ </button>');
+    } else {
+        var favoriteIcon = $('<button class="btn-favorite" data-active="false"> ♡ </button>');
+    }
     var videoEl = $('<iframe class= "has-ratio" src ="https://www.youtube.com/embed/' + videoId + '" title="' + videoTitle + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>');
     $(videoBoxes[currentIndex]).append(videoEl, favoriteIcon);
 }
