@@ -1,14 +1,17 @@
 var userInput = $('#user-input');
 var resultsContainer = $('#results-container');
 var lyricsEls = $('.lyrics-section');
+var nextButton = $('.slider-navigation-next');
+var prevButton = $('.slider-navigation-previous');
 //placeholder for HTML element that will hold the Youtube video
 var videoBoxes = $('.video');
 var lastSearch;
 var favoritesList;
-var videoNum = 2;
+var maxIndex = 2;
+var currentIndex = 2;
 
 //api keys for easy replacement if limits are exceeded
-var keyMusMatch = 'a2175728fd0b1091b79cae95435a1216'; 
+var keyMusMatch = 'a2175728fd0b1091b79cae95435a1216';
 var keyYT = 'AIzaSyBRuDvIUX8S79zEXDUNkaqpftfEY7jjaNQ';
 
 //required format for API calls for reference
@@ -28,6 +31,14 @@ function init() {
     } else {
         favoritesList = [];
     }
+    for (var i = 0; i<=maxIndex; i++){
+		var slide = $('[data-slider-index="' + i + '"]');
+		if (i ==currentIndex) {
+			slide.css("display", "block");
+		} else {
+			slide.css("display", "none");
+		}
+	}
 }
 
 //When search is submitted, queries musixmatch and returns tracks with the search term in either the author or track name
@@ -73,10 +84,9 @@ function handleResultsClick(event) {
     event.preventDefault();
     clicked = event.target;
     songClicked = clicked.closest('.song-option');
-    videoNum = (videoNum + 1)%3;
+    $('.slider-navigation-next').click();
     playSong(songClicked.textContent);
     showLyrics(parseInt(songClicked.dataset.index));
-    updateSlide();
 }
 
 //searches for a song on youtube and displays the video
@@ -89,17 +99,16 @@ function playSong(song) {
             return response.json();
         })
         .then(function(data) {
-            console.log(data.items[0]);
             embed(data.items[0].id.videoId, data.items[0].snippet.title);
         });
 }
 
 //creates an embedded video onto index.html
 function embed(videoId, videoTitle) {
-    $(videoBoxes[videoNum]).empty();
-    var favoriteIcon = $('<button class="btn-favorite" data-active="false"> ♡ </i>');
+    $(videoBoxes[currentIndex]).empty();
+    var favoriteIcon = $('<button class="btn-favorite" data-active="false"> ♡ </button>');
     var videoEl = $('<iframe class= "has-ratio" src ="https://www.youtube.com/embed/' + videoId + '" title="' + videoTitle + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>');
-    $(videoBoxes[videoNum]).append(videoEl, favoriteIcon);
+    $(videoBoxes[currentIndex]).append(videoEl, favoriteIcon);
 }
 
 function handleFavorite(event) {
@@ -107,13 +116,13 @@ function handleFavorite(event) {
     var clicked = event.target;
     var favorite = clicked.closest('.btn-favorite');
     if (favorite.dataset.active == "true") {
-        favorite.dataset.active = "false";
+        $(favorite).dataset.active = "false";
         $(favorite).text('♡');
         // TODO: remove video from favorites
         // TODO: set updated favorites in localStorage
     } else {
         $(favorite).text('♥');
-        favorite.dataset.active = "true";
+        $(favorite).dataset.active = "true";
         //TODO: add video to favorites
         //TODOL set updated favorites in localStorage
     }
@@ -129,29 +138,41 @@ function showLyrics(songindex) {
             return response.json();
         })
         .then(function(data) {
-            $(lyricsEls[videoNum]).empty();
+            $(lyricsEls[currentIndex]).empty();
             var lyricText = data.message.body.lyrics.lyrics_body;
             var copyright = data.message.body.lyrics.lyrics_copyright;
             var copyrightMessage = $('<span class="copyright">');
-            $(lyricsEls[videoNum]).html('<h1>Lyrics</h1>' + '<p class="lyrics">' + lyricText + '</p>');
+            $(lyricsEls[currentIndex]).html('<h1>Lyrics</h1>' + '<p class="lyrics">' + lyricText + '</p>');
             copyrightMessage.text(copyright);
-            $(lyricsEls[videoNum]).append(copyright);
+            $(lyricsEls[currentIndex]).append(copyright);
         });
 }
 
+nextButton.click(() =>  {
+    var oldSlide = $('[data-slider-index="' + currentIndex + '"]');
+    currentIndex += 1;  
+	if (currentIndex> maxIndex){
+		currentIndex = 0;
+	};
+    var newSlide = $('[data-slider-index="' + currentIndex + '"]');
+	oldSlide.css("display", 'none');
+	newSlide.css("display", 'block');
 
-function updateSlide() {
-	for (var i = 0; i<=2; i++){
-		var slide = $('[data-slider-index="' + i + '"]');
-		if (i==videoNum) {
-			slide.css("display", "block");
-		} else {
-			slide.css("display", "none");
-		}
-	}
-};
+});
 
-// init();
+prevButton.click(() => {
+    var oldSlide = $('[data-slider-index="' + currentIndex + '"]');
+    currentIndex -= 1;
+    if (currentIndex < 0){
+		currentIndex = maxIndex;
+	};
+	var newSlide = $('[data-slider-index="' + currentIndex + '"]');
+
+	oldSlide.css("display", 'none');
+	newSlide.css("display", 'block');
+});
+
+init();
 userInput.on('submit', handleFormSubmit);
 resultsContainer.on('click','.song-option', handleResultsClick)
 videoBoxes.on('click', '.btn-favorite', handleFavorite);
