@@ -101,6 +101,16 @@ white-space: normal;
   align-items: center;
 }
 
+.btn-favorite {
+  position: relative;
+  z-index: 2;
+}
+
+iframe {
+  position: relative;
+  z-index: 1;
+}
+
 .slider-navigation-next svg, .slider-navigation-previous svg {
   width: 25%;
 }
