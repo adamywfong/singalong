@@ -1,4 +1,5 @@
 var favoritesList;
+var favoritesContainer = document.getElementById("favorites-list")
 
 function init() {
     favoritesList = localStorage.getItem("favorites");
@@ -17,36 +18,25 @@ function displayFavorites() {
     if (favoritesList.length > 0) {
         for (var i=0; i<favoritesList.length;i++) {
             var listItem = document.createElement("li");
-
             var video = document.createElement("iframe");
+            var button = document.createElement("button");
             video.setAttribute("class", "has-ratio");
             video.setAttribute("src", "https://www.youtube.com/embed/" + favoritesList[i].videoID);
             video.setAttribute("title", favoritesList[i].videoTitle);
             video.setAttribute("frameborder", 0);
             video.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
-        // '<iframe class= "has-ratio" src ="https://www.youtube.com/embed/' + favoritesList[i].videoID + '" title="' + favoritesList[i].videoTitle + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>'
-
+            button.setAttribute("class","button is-danger btn-remove");
+            button.textContent("X");
             listItem.append(video);
+            listItem.append(button);
             favoritesContainer.append(listItem);
         }
-        // favoritesList.forEach(function (songIndex) {
-        //     var song = lastSearch[songIndex].track;
-        //     var listItem = document.createElement("li");
-        //     listItem.textContent = song.track_name + " by " + song.artist_name;
-        //     favoritesContainer.appendChild(listItem);
-        // });
     } else {
         favoritesContainer.innerHTML = "You have no favorite songs yet.";
     }
 }
 
-function addToFavorites(songIndex) {
-    if (!favoritesList.includes(songIndex)) {
-        favoritesList.push(songIndex);
-        localStorage.setItem("favorites", JSON.stringify(favoritesList));
-        displayFavorites();
-    }
-}
+window.addEventListener("click", )
 
 // Call the init function when the favorites.html page loads
 window.addEventListener("load", function () {
