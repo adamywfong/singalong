@@ -8,6 +8,7 @@ html {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#c5cfd1",GradientType=1);
   max-width: 100%;
   height: 100%;
+ 
 }
 
 body {
@@ -137,7 +138,9 @@ iframe {
   transition: opacity .3s,-webkit-transform .3s;
   transition: transform .3s,opacity .3s;
   transition: transform .3s,opacity .3s,-webkit-transform .3s;
+  z-index:3;
 }
+
 
 .slider-navigation-next {
   left: auto;
@@ -160,6 +163,9 @@ ul li {
   width: 80vw;
 }
 
+#submit-button {
+  line-height: 15px;
+}
 /* On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
 
