@@ -121,15 +121,15 @@ function handleFavorite(event) {
     if (favorite.dataset.active == "true") {
         favorite.dataset.active = "false";
         $(favorite).text('♡');
-        // TODO: remove video from favorites
-        // TODO: set updated favorites in localStorage
-        removeFromFavorites(videoData[currentIndex]);
+
+        var index = favoritesList.indexOf(videoData[currentIndex]);
+        favoritesList.splice(index,1);
+        localStorage.setItem("favorites", JSON.stringify(favoritesList));
     } else {
         $(favorite).text('♥');
         favorite.dataset.active = "true";
         favoritesList.push(videoData[currentIndex]);
         localStorage.setItem("favorites", JSON.stringify(favoritesList));
-        addToFavorites(videoData[currentIndex]);
     }
 }
 
