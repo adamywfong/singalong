@@ -48,7 +48,7 @@ function handleFormSubmit(event) {
     var query = $(userInput).children().eq(0).val();
     if (query!=='') {
         userInput.children().eq(0).val('');
-        fetch('https://api.musixmatch.com/ws/1.1/track.search?q_track_artist=' + query + '&f_has_lyrics=1&s_track_rating=desc&page_size=10&apikey=' + keyMusMatch)
+        fetch('https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.search?q_track_artist=' + query + '&f_has_lyrics=1&s_track_rating=desc&page_size=10&apikey=' + keyMusMatch)
             .then(function(response){
                 if (!response.ok) {
                     throw response.json();
@@ -92,7 +92,7 @@ function handleResultsClick(event) {
 
 //searches for a song on youtube and displays the video
 function playSong(song) {
-    fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=' + song + '&videoCategoryId=10&key=' +keyYT)
+    fetch('https://cors-anywhere.herokuapp.com/https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=' + song + '&videoCategoryId=10&key=' +keyYT)
         .then(function(response) {
             if (!response.ok) {
                 throw response.json();
@@ -139,7 +139,7 @@ function handleFavorite(event) {
 
 //displays the lyrics of a given searchresult
 function showLyrics(songindex) {
-    fetch('https://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id=' + lastSearch[songindex].track.commontrack_id + '&apikey=' + keyMusMatch)
+    fetch('https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id=' + lastSearch[songindex].track.commontrack_id + '&apikey=' + keyMusMatch)
         .then(function(response){
             if (!response.ok) {
                 throw response.json();
