@@ -9,6 +9,7 @@ var lastSearch;
 var favoritesList;
 var maxIndex = 2;
 var currentIndex = 2;
+var videoData = [,,];
 
 //api keys for easy replacement if limits are exceeded
 var keyMusMatch = 'a2175728fd0b1091b79cae95435a1216';
@@ -99,6 +100,7 @@ function playSong(song) {
             return response.json();
         })
         .then(function(data) {
+            videoData[currentIndex] = ({videoID: data.items[0].id.videoId, videoTitle: data.items[0].snippet.title});
             embed(data.items[0].id.videoId, data.items[0].snippet.title);
         });
 }
@@ -123,8 +125,8 @@ function handleFavorite(event) {
     } else {
         $(favorite).text('♥');
         $(favorite).dataset.active = "true";
-        //TODO: add video to favorites
-        //TODOL set updated favorites in localStorage
+        favoritesList.push(videoData[currentIndex]);
+        localStorage.setItem("favorites", JSON.stringify(favoritesList));
     }
 }
 
