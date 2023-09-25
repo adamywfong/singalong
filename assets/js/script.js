@@ -117,15 +117,16 @@ function handleFavorite(event) {
     event.preventDefault();
     var clicked = event.target;
     var favorite = clicked.closest('.btn-favorite');
+    console.log (favorite.dataset);
     if (favorite.dataset.active == "true") {
-        $(favorite).dataset.active = "false";
+        favorite.dataset.active = "false";
         $(favorite).text('♡');
         // TODO: remove video from favorites
         // TODO: set updated favorites in localStorage
         removeFromFavorites(videoData[currentIndex]);
     } else {
         $(favorite).text('♥');
-        $(favorite).dataset.active = "true";
+        favorite.dataset.active = "true";
         favoritesList.push(videoData[currentIndex]);
         localStorage.setItem("favorites", JSON.stringify(favoritesList));
         addToFavorites(videoData[currentIndex]);
