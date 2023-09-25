@@ -59,7 +59,7 @@ function displayResults(data) {
         return;
     } else {
         for (var i=0; i < trackList.length; i++) {
-            var resultEl = $("<button class='button is-rounded is-primary song-option' data-index='" + i +"'>");
+            var resultEl = $("<button class='button is-rounded is-dark song-option' data-index='" + i +"'>");
             var playButton = $("<i class='align-left'>");
             resultEl.text(trackList[i].track.track_name + ' by ' + trackList[i].track.artist_name);
             resultEl.append(playButton);
@@ -76,6 +76,7 @@ function handleResultsClick(event) {
     videoNum = (videoNum + 1)%3;
     playSong(songClicked.textContent);
     showLyrics(parseInt(songClicked.dataset.index));
+    updateSlide();
 }
 
 //searches for a song on youtube and displays the video
@@ -88,6 +89,7 @@ function playSong(song) {
             return response.json();
         })
         .then(function(data) {
+            console.log(data.items[0]);
             embed(data.items[0].id.videoId, data.items[0].snippet.title);
         });
 }
@@ -96,7 +98,7 @@ function playSong(song) {
 function embed(videoId, videoTitle) {
     $(videoBoxes[videoNum]).empty();
     var favoriteIcon = $('<button class="btn-favorite" data-active="false"> ♡ </i>');
-    var videoEl = $('<iframe class="iframe" src = "https://www.youtube.com/embed/' + videoId + '" title="' + videoTitle + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>');
+    var videoEl = $('<iframe class= "has-ratio" src ="https://www.youtube.com/embed/' + videoId + '" title="' + videoTitle + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>');
     $(videoBoxes[videoNum]).append(videoEl, favoriteIcon);
 }
 
@@ -131,11 +133,23 @@ function showLyrics(songindex) {
             var lyricText = data.message.body.lyrics.lyrics_body;
             var copyright = data.message.body.lyrics.lyrics_copyright;
             var copyrightMessage = $('<span class="copyright">');
-            $(lyricsEls[videoNum]).html('<h1>Song Lyrics</h1><p class="lyrics">' + lyricText + '</p>');
+            $(lyricsEls[videoNum]).html('<h1>Lyrics</h1>' + '<p class="lyrics">' + lyricText + '</p>');
             copyrightMessage.text(copyright);
             $(lyricsEls[videoNum]).append(copyright);
         });
 }
+
+
+function updateSlide() {
+	for (var i = 0; i<=2; i++){
+		var slide = $('[data-slider-index="' + i + '"]');
+		if (i==videoNum) {
+			slide.css("display", "block");
+		} else {
+			slide.css("display", "none");
+		}
+	}
+};
 
 // init();
 userInput.on('submit', handleFormSubmit);
