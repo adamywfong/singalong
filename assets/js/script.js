@@ -122,13 +122,32 @@ function handleFavorite(event) {
         $(favorite).text('♡');
         // TODO: remove video from favorites
         // TODO: set updated favorites in localStorage
+        removeFromFavorites(videoData[currentIndex]);
     } else {
         $(favorite).text('♥');
         $(favorite).dataset.active = "true";
         favoritesList.push(videoData[currentIndex]);
         localStorage.setItem("favorites", JSON.stringify(favoritesList));
+        addToFavorites(videoData[currentIndex]);
     }
 }
+
+//adding and removing the videos from the favorites list
+function addToFavorites(video) {
+    favoritesList.push(video);
+    localStorage.setItem("favorites", JSON.stringify(favoritesList));
+}
+
+function removeFromFavorites(video) {
+    var index = favoritesList.findIndex(function (fav) {
+        return fav.videoID === video.videoID;
+    });
+    if (index !== -1) {
+        favoritesList.splice(index, 1);
+        localStorage.setItem("favorites", JSON.stringify(favoritesList));
+    }
+}
+
 
 //displays the lyrics of a given searchresult
 function showLyrics(songindex) {
