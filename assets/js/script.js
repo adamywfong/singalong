@@ -117,9 +117,11 @@ function handleFavorite(event) {
     event.preventDefault();
     var clicked = event.target;
     var favorite = clicked.closest('.btn-favorite');
+    console.log (favorite.dataset);
     if (favorite.dataset.active == "true") {
         favorite.dataset.active = "false";
         $(favorite).text('♡');
+
         var index = favoritesList.indexOf(videoData[currentIndex]);
         favoritesList.splice(index,1);
         localStorage.setItem("favorites", JSON.stringify(favoritesList));
@@ -130,6 +132,23 @@ function handleFavorite(event) {
         localStorage.setItem("favorites", JSON.stringify(favoritesList));
     }
 }
+
+//adding and removing the videos from the favorites list
+function addToFavorites(video) {
+    favoritesList.push(video);
+    localStorage.setItem("favorites", JSON.stringify(favoritesList));
+}
+
+function removeFromFavorites(video) {
+    var index = favoritesList.findIndex(function (fav) {
+        return fav.videoID === video.videoID;
+    });
+    if (index !== -1) {
+        favoritesList.splice(index, 1);
+        localStorage.setItem("favorites", JSON.stringify(favoritesList));
+    }
+}
+
 
 //displays the lyrics of a given searchresult
 function showLyrics(songindex) {
