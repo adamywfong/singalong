@@ -22,18 +22,8 @@ function displayFavorites() {
             video.setAttribute("src", "https://www.youtube.com/embed/" + favoritesList[i].videoID);
             video.setAttribute("title", favoritesList[i].videoTitle);
             video.setAttribute("frameborder", 0);
-            video.setAttribute("allow", accelerometer);
-            video.setAttribute("allow",autoplay);
-            video.setAttribute("allow", clipboard-write);
-            video.setAttribute("allow", encrypted-media);
-            video.setAttribute("allow", gyroscope);
-            video.setAttribute("allow", picture-in-picture);
-            video.setAttribute("allow", web-share);
-            video.setAttribute(allowfullscreen);
-
-
-
-            // '<iframe class= "has-ratio" src ="https://www.youtube.com/embed/' + favoritesList[i].videoID + '" title="' + favoritesList[i].videoTitle + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>'
+            video.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+        // '<iframe class= "has-ratio" src ="https://www.youtube.com/embed/' + favoritesList[i].videoID + '" title="' + favoritesList[i].videoTitle + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>'
             listItem.append(video);
             favoritesContainer.append(listItem);
         }
