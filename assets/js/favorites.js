@@ -2,6 +2,7 @@ var favoritesList;
 var favoritesContainer = document.getElementById("favorites-list");
 var backButton = document.getElementById("btn-back");
 
+//On init gets favoritesList
 function init() {
     favoritesList = localStorage.getItem("favorites");
     if (favoritesList) {
@@ -11,6 +12,7 @@ function init() {
     }
 }
 
+//Displays contents of favorites list as embedded Youtube videos
 function displayFavorites() {
     favoritesContainer.innerHTML = "";
     if (favoritesList.length > 0) {
@@ -35,6 +37,7 @@ function displayFavorites() {
     }
 }
 
+//When X is clicked removes item from favorites list
 favoritesContainer.addEventListener("click", function(event) {
     var clicked = event.target;
     if (clicked.matches(".btn-remove")) {
@@ -45,7 +48,7 @@ favoritesContainer.addEventListener("click", function(event) {
     }
 })
 
-// Call the init function when the favorites.html page loads
+// Call the init function when the favorites.html page loads and displays current favorites
 window.addEventListener("load", function () {
     init();
     displayFavorites();

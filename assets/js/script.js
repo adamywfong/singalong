@@ -24,7 +24,7 @@ var keyYT = 'AIzaSyBRuDvIUX8S79zEXDUNkaqpftfEY7jjaNQ';
 //Remove before final deplayment
 //https://cors-anywhere.herokuapp.com/
 
-
+// On init gets favorites list and sets video visibility
 function init() {
     favoritesList = localStorage.getItem("favorites");
     if (favoritesList) {
@@ -48,7 +48,7 @@ function handleFormSubmit(event) {
     var query = $(userInput).children().eq(0).val();
     if (query!=='') {
         userInput.children().eq(0).val('');
-        fetch('https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.search?q_track_artist=' + query + '&f_has_lyrics=1&s_track_rating=desc&page_size=10&apikey=' + keyMusMatch)
+        fetch('http://api.musixmatch.com/ws/1.1/track.search?q_track_artist=' + query + '&f_has_lyrics=1&s_track_rating=desc&page_size=10&apikey=' + keyMusMatch)
             .then(function(response){
                 if (!response.ok) {
                     throw response.json();
@@ -92,7 +92,7 @@ function handleResultsClick(event) {
 
 //searches for a song on youtube and displays the video
 function playSong(song) {
-    fetch('https://cors-anywhere.herokuapp.com/https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=' + song + '&videoCategoryId=10&key=' +keyYT)
+    fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=' + song + '&videoCategoryId=10&key=' +keyYT)
         .then(function(response) {
             if (!response.ok) {
                 throw response.json();
@@ -108,7 +108,6 @@ function playSong(song) {
 //creates an embedded video onto index.html
 function embed(videoId, videoTitle) {
     $(videoBoxes[currentIndex]).empty();
-    console.log(favoritesList.findIndex(i => i.videoID === videoId));
     //checks to see if song is already in favorites list
     if(favoritesList.findIndex(i => i.videoID === videoId)>=0) {
         var favoriteIcon = $('<button class="btn-favorite" data-active="true"> ♥ </button>');
@@ -124,7 +123,6 @@ function handleFavorite(event) {
     event.preventDefault();
     var clicked = event.target;
     var favorite = clicked.closest('.btn-favorite');
-    console.log (favorite.dataset);
     if (favorite.dataset.active == "true") {
         favorite.dataset.active = "false";
         $(favorite).text('♡');
@@ -141,7 +139,7 @@ function handleFavorite(event) {
 
 //displays the lyrics of a given searchresult
 function showLyrics(songindex) {
-    fetch('https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id=' + lastSearch[songindex].track.commontrack_id + '&apikey=' + keyMusMatch)
+    fetch('http://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id=' + lastSearch[songindex].track.commontrack_id + '&apikey=' + keyMusMatch)
         .then(function(response){
             if (!response.ok) {
                 throw response.json();
