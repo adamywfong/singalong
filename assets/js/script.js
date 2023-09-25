@@ -108,11 +108,18 @@ function playSong(song) {
 //creates an embedded video onto index.html
 function embed(videoId, videoTitle) {
     $(videoBoxes[currentIndex]).empty();
-    var favoriteIcon = $('<button class="btn-favorite" data-active="false"> ♡ </button>');
+    console.log(favoritesList.findIndex(i => i.videoID === videoId));
+    //checks to see if song is already in favorites list
+    if(favoritesList.findIndex(i => i.videoID === videoId)>=0) {
+        var favoriteIcon = $('<button class="btn-favorite" data-active="true"> ♥ </button>');
+    } else {
+        var favoriteIcon = $('<button class="btn-favorite" data-active="false"> ♡ </button>');
+    }
     var videoEl = $('<iframe class= "has-ratio" src ="https://www.youtube.com/embed/' + videoId + '" title="' + videoTitle + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>');
     $(videoBoxes[currentIndex]).append(videoEl, favoriteIcon);
 }
 
+//When a song is favorites, adds it to the favorites list
 function handleFavorite(event) {
     event.preventDefault();
     var clicked = event.target;
@@ -121,7 +128,6 @@ function handleFavorite(event) {
     if (favorite.dataset.active == "true") {
         favorite.dataset.active = "false";
         $(favorite).text('♡');
-
         var index = favoritesList.indexOf(videoData[currentIndex]);
         favoritesList.splice(index,1);
         localStorage.setItem("favorites", JSON.stringify(favoritesList));
@@ -132,23 +138,6 @@ function handleFavorite(event) {
         localStorage.setItem("favorites", JSON.stringify(favoritesList));
     }
 }
-
-//adding and removing the videos from the favorites list
-function addToFavorites(video) {
-    favoritesList.push(video);
-    localStorage.setItem("favorites", JSON.stringify(favoritesList));
-}
-
-function removeFromFavorites(video) {
-    var index = favoritesList.findIndex(function (fav) {
-        return fav.videoID === video.videoID;
-    });
-    if (index !== -1) {
-        favoritesList.splice(index, 1);
-        localStorage.setItem("favorites", JSON.stringify(favoritesList));
-    }
-}
-
 
 //displays the lyrics of a given searchresult
 function showLyrics(songindex) {
@@ -170,6 +159,7 @@ function showLyrics(songindex) {
         });
 }
 
+//Carousel button controls
 nextButton.click(() =>  {
     var oldSlide = $('[data-slider-index="' + currentIndex + '"]');
     currentIndex += 1;  
