@@ -100,7 +100,6 @@ function embed(videoId, videoTitle) {
     var favoriteIcon = $('<button class="btn-favorite" data-active="false"> ♡ </i>');
     var videoEl = $('<iframe class= "has-ratio" src ="https://www.youtube.com/embed/' + videoId + '" title="' + videoTitle + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>');
     $(videoBoxes[videoNum]).append(videoEl, favoriteIcon);
-   
 }
 
 function handleFavorite(event) {
