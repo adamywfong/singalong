@@ -1,100 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    
-    <title>Singalong</title>
-  </head>
-  <body>
-    <header>
-      <div class = "nav columns">
-        <image class= "image is-64x64" src="./assets/images/logo.png">
-        <h1 class = "title column">SING-A-LONG</h1>
-        <a href="./favorites.html"><h2 class = "title-2 column" id = "favorites">F A V O R I T E S</h2></a>
-        <form class = "column columns" id="user-input">
-          <input class ="input is-normal column" type="text" placeholder="Find a Song">
-          <button class="button is-warning column" id = "submit-button">S U B M I T</button>
-        </form>
-      </div>
-    </header>
-    <main class = "column">
-      <div class = "columns" section id ="results ">
-        <ul class = "column" id="results-container">
-        </ul>
-      </div>
-      <div class="slider">
-        <div class = "slider-container" style = "opacity: 1; transition: none 0s ease 0s; transform: translate3d,(0px, 0px, 0px);">
-          <div class = "slider-item" data-slider-index="0"> 
-            <div class="card">
-              <div class="card-video column">
-                <figure class="video image is-16by9">
-                  <!-- video 1 -->
-                </figure>
-              </div>
-              <div class="lyrics-section column">
-                <!-- lyrics 1 -->
-              </div> 
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <title>Singalong</title>
+</head>
+<body>
+  <header class="columns">
+    <div class="column">
+      <img class="image is-64x64" src="./assets/images/logo.png" alt="Logo">
+    </div>
+    <div class="column">
+      <h1 class="title">SING-A-LONG</h1>
+    </div>
+    <div class="column">
+      <a href="./favorites.html" class="title-2">FAVORITES</a>
+    </div>
+    <div class="column columns" id="user-input">
+      <input class="input is-normal column" type="text" placeholder="Find a Song">
+      <button class="button is-warning column" id="submit-button">SUBMIT</button>
+    </div>
+  </header>
+  <main class="column">
+    <div class="columns" id="results">
+      <ul class="column" id="results-container"></ul>
+    </div>
+    <div class="slider">
+      <div class="slider-container" style="opacity: 1; transition: none 0s ease 0s; transform: translate3d(0px, 0px, 0px);">
+        <div class="slider-item" data-slider-index="0"> 
+          <div class="card">
+            <div class="card-video column">
+              <figure class="video image is-16by9">
+                <!-- video 1 -->
+              </figure>
             </div>
-          </div> 
-          <div class = "slider-item" data-slider-index="1">  
-            <div class="card">
-              <div class="card-video column">
-                <figure class="video image is-16by9">
-                  <!-- video 2 -->
-                </figure>
-              </div>
-              <div class= "lyrics-section column">
-                <!-- lyrics 2 -->
-              </div>  
-            </div>
-          </div>
-          <div class = "slider-item" data-slider-index="2">
-            <div class="card">
-              <div class="card-video column">
-                <figure class="video image is-16by9">
-                  <!-- video 3 -->
-                </figure>
-              </div>
-              <div class="lyrics-section column">
-                <!-- lyrics 3 -->
-              </div>
-            </div>
+            <div class="lyrics-section column">
+              <!-- lyrics 1 -->
+            </div> 
           </div>
         </div> 
-        <section class = "slider-wrapper">
-          <div class = "slider-navigation-previous">
-            <svg viewBox = "0 0 50 80" xml:space = "preserve">
-              <polyline fill = "color is-dark" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points = "45.63, 75.8, 0.0375, 38.087 45.63, 0.375"></polyline>
-            </svg>
+        <div class="slider-item" data-slider-index="1">  
+          <div class="card">
+            <div class="card-video column">
+              <figure class="video image is-16by9">
+                <!-- video 2 -->
+              </figure>
+            </div>
+            <div class="lyrics-section column">
+              <!-- lyrics 2 -->
+            </div>  
           </div>
-          <div class = "slider-navigation-next">
-            <svg viewBox = "0 0 50 80" xml:space = "preserve">
-              <polyline fill = "color is-dark" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points = "0.375, 0.375 45.63,38.087 0.375,75.8"></polyline>
-            </svg>
-          </div>
-        </section>
-        <div class = "slider-pagination">
-          <div class= "slider-page" data-index="0"></div>
-          <div class= "slider-page" data-index="1"></div>
-          <div class= "slider-page" data-index="2"></div>
         </div>
+        <div class="slider-item" data-slider-index="2">
+          <div class="card">
+            <div class="card-video column">
+              <figure class="video image is-16by9">
+                <!-- video 3 -->
+              </figure>
+            </div>
+            <div class="lyrics-section column">
+              <!-- lyrics 3 -->
+            </div>
+          </div>
+        </div>
+      </div> 
+      <section class="slider-wrapper">
+        <div class="slider-navigation-previous">
+          <svg viewBox="0 0 50 80" xmlns="http://www.w3.org/2000/svg">
+            <polyline fill="none" stroke="black" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.0375,38.087 45.63,0.375"></polyline>
+          </svg>
+        </div>
+        <div class="slider-navigation-next">
+          <svg viewBox="0 0 50 80" xmlns="http://www.w3.org/2000/svg">
+            <polyline fill="none" stroke="black" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8"></polyline>
+          </svg>
+        </div>
+      </section>
+      <div class="slider-pagination">
+        <div class="slider-page" data-index="0"></div>
+        <div class="slider-page" data-index="1"></div>
+        <div class="slider-page" data-index="2"></div>
       </div>
-    </main>
-    <footer class = "columns">
-      <div class = "column">
-        <p>Best Karaoke Page Ever!</p> 
-      </div>
-    </footer>
-    <script
-        src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-        crossorigin="anonymous">
-    </script>
-    <!-- <script src="./assets/js/carousel.js"></script> -->
+    </div>
+  </main>
+  <footer class="columns">
+    <div class="column">
+      <p>Best Karaoke Page Ever!</p> 
+    </div>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <!-- <script src="./assets/js/carousel.js"></script> -->
   <script src="./assets/js/script.js"></script>
 </body>
 </html>
