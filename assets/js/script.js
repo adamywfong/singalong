@@ -10,11 +10,10 @@ var favoritesList;
 var maxIndex = 2;
 var currentIndex = 2;
 var videoData = [,,];
-require('dotenv').config();
 
 //api keys for easy replacement if limits are exceeded
-var keyMusMatch = process.env.KeyMM;
-var keyYT = process.env.KeyYT;
+var keyMusMatch = 'a2175728fd0b1091b79cae95435a1216';
+var keyYT = 'AIzaSyBRuDvIUX8S79zEXDUNkaqpftfEY7jjaNQ'
 
 //required format for API calls for reference
 //http://api.musixmatch.com/ws/1.1/track.search?q={query}&apikey={keyMusMatch}&s_track_rating=asc
