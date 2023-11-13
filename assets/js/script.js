@@ -10,6 +10,7 @@ var favoritesList;
 var maxIndex = 2;
 var currentIndex = 2;
 var videoData = [,,];
+require('dotenv').config();
 
 //api keys for easy replacement if limits are exceeded
 var keyMusMatch = process.env.KeyMM;
